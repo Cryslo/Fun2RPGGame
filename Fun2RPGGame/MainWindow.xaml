@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="509.091" Width="872.947">
     <Grid>
-        <ListBox x:Name="SQLListBox" HorizontalAlignment="Left" Height="328" Margin="399,10,0,0" VerticalAlignment="Top" Width="456"/>
         <Button x:Name="getSQLdata1" Content="SQL1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="getSQLdata1_Click"/>
-        <Button x:Name="getSQLdata2" Content="SQL2" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="getSQLdata3" Content="SQL3" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="getSQLdata4" Content="SQL4" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="getSQLdata5" Content="SQL5" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="getSQLdata2" Content="SQL2" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75" Click="getSQLdata2_Click"/>
+        <Button x:Name="getSQLdata3" Content="SQL3" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="75" Click="getSQLdata3_Click"/>
+        <Button x:Name="getSQLdata4" Content="SQL4" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="75" Click="getSQLdata4_Click"/>
+        <Button x:Name="getSQLdata5" Content="SQL5" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="75" Click="getSQLdata5_Click"/>
+        <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Height="458" Width="765" ItemsSource="{Binding}"/>
+        <Button x:Name="getSQLdata6" Content="SQL6" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top" Width="75" Click="getSQLdata6_Click"/>
 
     </Grid>
 </Window>

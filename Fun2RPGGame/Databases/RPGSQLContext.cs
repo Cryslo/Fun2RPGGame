@@ -15,7 +15,7 @@ namespace Fun2RPGGame
 
         public List<string> GetAllCharacters()
         {
-            List<string> listacolumnas = new List<string>();
+            List<string> returnlist = new List<string>();
 
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -28,10 +28,33 @@ namespace Fun2RPGGame
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                listacolumnas.Add(Convert.ToString(reader["Name"]));
+                returnlist.Add(Convert.ToString(reader["Name"]));
             }
             conString.Close();
-            return listacolumnas;
+            return returnlist;
+        }
+
+        public DataTable Query1(string query)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = query;
+            //"Select C.Name, CL.Name as Classname, IT.Name as Itemname, CAT.Name as Category, IT.LevelRequirement "+
+            //"From Inventory I " +
+            //"join Character C on C.CharacterID = I.CharacterID " +
+            //"join Class CL on CL.ClassID = C.ClassID " +
+            //"join Item IT on IT.ItemID = I.ItemID " +
+            //"join Category CAT on CAT.CategoryID = IT.CategoryID ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conString;
+
+            conString.Open();
+            DataTable t1 = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(cmd))
+            {
+                a.Fill(t1);
+            }
+            conString.Close();
+            return t1;
         }
 
         public string GetCharacter(string name)

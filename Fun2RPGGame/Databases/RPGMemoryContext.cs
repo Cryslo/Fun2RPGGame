@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,11 @@ namespace Fun2RPGGame
         public string GetCharacter(string name)
         {
             return name;
+        }
+
+        public DataTable Query1(string query)
+        {
+            throw new NotImplementedException();
         }
     }
 }
