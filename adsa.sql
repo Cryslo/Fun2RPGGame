@@ -1,0 +1,2 @@
+﻿select Health
+from Attributes

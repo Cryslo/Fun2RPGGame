@@ -24,5 +24,13 @@ namespace Fun2RPGGame
         {
             InitializeComponent();
         }
+
+        private void getSQLdata1_Click(object sender, RoutedEventArgs e)
+        {
+            RPGMemoryContext rmc = new RPGMemoryContext();
+            RPGRepository rpr = new RPGRepository(rmc);
+
+            SQLListBox.ItemsSource = rpr.GetAllCharacters();
+        }
     }
 }
