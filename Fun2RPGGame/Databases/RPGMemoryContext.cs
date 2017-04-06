@@ -14,10 +14,6 @@ namespace Fun2RPGGame
         public RPGMemoryContext()
         {
             nameList.Add("Crashlog");
-            nameList.Add("Baz");
-            nameList.Add("Dreambough");
-            nameList.Add("Xenkai");
-            nameList.Add("Zighy");
         }
 
         public List<string> GetAllCharacters()

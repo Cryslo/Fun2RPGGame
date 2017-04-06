@@ -30,12 +30,7 @@ namespace Fun2RPGGame
         {
             RPGSQLContext rmc = new RPGSQLContext();
             RPGRepository rpr = new RPGRepository(rmc);
-            string query = "Select C.Name, CL.Name as Classname, IT.Name as Itemname, CAT.Name as Category, IT.LevelRequirement " +
-            "From Inventory I " +
-            "join Character C on C.CharacterID = I.CharacterID " +
-            "join Class CL on CL.ClassID = C.ClassID " +
-            "join Item IT on IT.ItemID = I.ItemID " +
-            "join Category CAT on CAT.CategoryID = IT.CategoryID ";
+            string query = "SELECT sk.Naam from Character_Skills cs join Skill sk on sk.SkillID = cs.SkillID where sk.Damage > 50 ";
             DataTable dt = rpr.Query1(query);
             dataGridView.DataContext = dt.DefaultView;
         }
@@ -44,11 +39,7 @@ namespace Fun2RPGGame
         {
             RPGSQLContext rmc = new RPGSQLContext();
             RPGRepository rpr = new RPGRepository(rmc);
-            string query = "select  C.name, A.Dexterity "+
-            "from BaseAttributes BA "+
-            "join Attributes A on a.AttributeID = BA.AttributeID " +
-            "join Class C on C.ClassID = BA.ClassID " +
-            "Order by A.Dexterity asc ";
+            string query = "SELECT ch.Name, cl.Name\r\nfrom Character ch\r\njoin Class cl on cl.ClassID = ch.ClassID\r\njoin BaseAttributes ba on ba.ClassID = ch.ClassID\r\njoin Attributes atri on atri.AttributeID = ba.AttributeID\r\nwhere Strength < (Select avg(Strength) from Attributes) and cl.Name = \'Warlock\'\r\n";
             DataTable dt = rpr.Query1(query);
             dataGridView.DataContext = dt.DefaultView;
         }
@@ -57,11 +48,7 @@ namespace Fun2RPGGame
         {
             RPGSQLContext rmc = new RPGSQLContext();
             RPGRepository rpr = new RPGRepository(rmc);
-            string query = "select Health, Mana, ch.Name " +
-            "from BaseAttributes b " +
-            "join Attributes a on a.AttributeID = b.AttributeID " +
-            "join Class c on c.ClassID = b.ClassID " +
-            "full outer join Character ch on ch.ClassID = c.ClassID";
+            string query = "SELECT ch.Name, sk.Naam\r\nfrom Character ch\r\njoin Character_Skills chs on chs.CharacterID = ch.CharacterID\r\njoin Skill sk on sk.SkillID = chs.SkillID\r\n";
             DataTable dt = rpr.Query1(query);
             dataGridView.DataContext = dt.DefaultView;
         }
@@ -70,10 +57,7 @@ namespace Fun2RPGGame
         {
             RPGSQLContext rmc = new RPGSQLContext();
             RPGRepository rpr = new RPGRepository(rmc);
-            string query = "select Health " +
-            "from attributes " +
-            "group by Strength, Health " +
-            "having Strength > 4 ";
+            string query = "SELECT ch.Name, itm.Name as itemname, itm.LevelRequirement, inv.Itemcount as AmmountInInventory\r\nfrom item itm\r\njoin Inventory inv on inv.ItemID = itm.ItemID\r\njoin Character ch on ch.CharacterID = inv.CharacterID\r\norder by ch.Name\r\n";
             DataTable dt = rpr.Query1(query);
             dataGridView.DataContext = dt.DefaultView;
         }
@@ -82,16 +66,7 @@ namespace Fun2RPGGame
         {
             RPGSQLContext rmc = new RPGSQLContext();
             RPGRepository rpr = new RPGRepository(rmc);
-            string query = "with Categoryrecursive as (" +
-            "    select CategoryID, ParentID, Name,0 AS LEVEL " +
-            "    from Category " +
-            "    where ParentID is null " +
-            "    union ALL " +
-            "    select c.CategoryID, c.ParentID, c.Name,Level + 1 AS LEVEL " +
-            "    from Category c " +
-            "    inner " +
-            "    join Categoryrecursive as cr on c.ParentID = cr.CategoryID " +
-            ") select * from Categoryrecursive ";
+            string query = "SELECT ch.Name, itm.Name as itemname, itm.LevelRequirement, inv.Itemcount as AmmountInInventory\r\nfrom item itm\r\njoin Inventory inv on inv.ItemID = itm.ItemID\r\njoin Character ch on ch.CharacterID = inv.CharacterID\r\nwhere inv.ItemCount > 5\r\norder by AmmountInInventory desc\r\n";
             DataTable dt = rpr.Query1(query);
             dataGridView.DataContext = dt.DefaultView;
         }
@@ -100,7 +75,7 @@ namespace Fun2RPGGame
         {
             RPGSQLContext rmc = new RPGSQLContext();
             RPGRepository rpr = new RPGRepository(rmc);
-            string query = "Select (select price from item it where it.ItemID = inv.ItemID) as Itemprices from Inventory inv";
+            string query = "Select c1.Name, c2.name\r\nfrom Category c1\r\njoin Category c2 on c1.ParentID = c2.categoryid\r\n";
             DataTable dt = rpr.Query1(query);
             dataGridView.DataContext = dt.DefaultView;
         }

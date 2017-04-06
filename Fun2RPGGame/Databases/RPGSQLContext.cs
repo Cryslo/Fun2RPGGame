@@ -38,12 +38,6 @@ namespace Fun2RPGGame
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = query;
-            //"Select C.Name, CL.Name as Classname, IT.Name as Itemname, CAT.Name as Category, IT.LevelRequirement "+
-            //"From Inventory I " +
-            //"join Character C on C.CharacterID = I.CharacterID " +
-            //"join Class CL on CL.ClassID = C.ClassID " +
-            //"join Item IT on IT.ItemID = I.ItemID " +
-            //"join Category CAT on CAT.CategoryID = IT.CategoryID ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conString;
 
